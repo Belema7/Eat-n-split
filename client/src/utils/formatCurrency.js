@@ -1,3 +1,12 @@
+/**
+ * Format a number as currency (USD)
+ * @param {number} amount - The amount to format
+ * @returns {string} Formatted currency string
+ */
 export function formatCurrency(amount) {
-  return `$${Number(amount).toFixed(2)}`;
+  if (typeof amount !== 'number' || isNaN(amount)) return '$0.00';
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(amount);
 }
